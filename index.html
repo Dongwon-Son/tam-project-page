@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Project page for Torque Adaptation Module.">
+    <title>TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulation</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172026;
+        --muted: #5f6d76;
+        --line: #d9e2e5;
+        --paper: #fbfcfb;
+        --band: #eef4f0;
+        --accent: #0f766e;
+        --accent-dark: #0b4f4a;
+        --warm: #b4532a;
+        --shadow: 0 18px 42px rgba(23, 32, 38, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--accent-dark);
+        text-decoration-thickness: 0.08em;
+        text-underline-offset: 0.18em;
+      }
+
+      img,
+      video {
+        display: block;
+        max-width: 100%;
+      }
+
+      .wrap {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(251, 252, 251, 0.92);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .mark {
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        font-size: 0.92rem;
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      .hero {
+        padding: 74px 0 34px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 34px;
+        align-items: start;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        overflow-wrap: anywhere;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 5vw, 5.1rem);
+        line-height: 0.98;
+        font-weight: 790;
+      }
+
+      h2 {
+        margin: 0 0 18px;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+        line-height: 1.1;
+      }
+
+      h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .lead {
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.16rem);
+        max-width: 68ch;
+      }
+
+      .button {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        padding: 9px 15px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--accent-dark);
+      }
+
+      .hero-media {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        background: #fff;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: auto;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+
+      .band {
+        background: var(--band);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .abstract {
+        max-width: 880px;
+        font-size: 1.03rem;
+      }
+
+      .abstract p {
+        margin: 0 0 16px;
+      }
+
+      .paper-figures {
+        display: grid;
+        gap: 36px;
+      }
+
+      .paper-figure {
+        margin: 0;
+      }
+
+      .paper-figure img {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .figure-copy {
+        max-width: 900px;
+        margin-top: 14px;
+      }
+
+      .figure-copy h3 {
+        margin: 0 0 8px;
+        font-size: clamp(1.1rem, 2vw, 1.35rem);
+      }
+
+      .figure-copy p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .demo-section {
+        margin-top: 42px;
+      }
+
+      .demo-section:first-of-type {
+        margin-top: 0;
+      }
+
+      .demo-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 16px;
+      }
+
+      .demo-head h3 {
+        margin: 0;
+        font-size: clamp(1.2rem, 2vw, 1.55rem);
+      }
+
+      .demo-head p {
+        max-width: 58ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .video-grid {
+        --columns: 3;
+        display: grid;
+        grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .video-grid.two {
+        --columns: 2;
+      }
+
+      .video-grid.four {
+        --columns: 4;
+      }
+
+      .video-grid.continuous-pushing {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 900px;
+        margin-top: 18px;
+      }
+
+      .video-grid.side-by-side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .payload-row {
+        margin-top: 18px;
+      }
+
+      .payload-row h4 {
+        margin: 0 0 10px;
+        font-size: 1rem;
+      }
+
+      .video-grid.push-comparison {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .video-grid.push-comparison video {
+        aspect-ratio: 9 / 16;
+      }
+
+      .video-grid.tall-portrait video {
+        aspect-ratio: 9 / 16;
+      }
+
+      .video-grid.continuous-pushing video {
+        aspect-ratio: 9 / 10;
+      }
+
+      .video-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(23, 32, 38, 0.07);
+      }
+
+      .video-card video {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+        background: #0d1418;
+      }
+
+      .video-card.landscape video {
+        aspect-ratio: 16 / 9;
+      }
+
+      .video-card.compact video {
+        aspect-ratio: 1 / 1.05;
+        object-fit: contain;
+      }
+
+      .video-copy {
+        padding: 14px;
+      }
+
+      .video-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 860px) {
+        .hero {
+          padding-top: 44px;
+        }
+
+        .hero-grid,
+        .video-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .video-grid.push-comparison {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 8px;
+        }
+
+        .video-grid.continuous-pushing {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+        }
+
+        .video-grid.side-by-side {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+        }
+
+        .video-grid.side-by-side .video-copy {
+          padding: 10px;
+        }
+
+        .video-grid.side-by-side h3 {
+          margin: 0;
+          font-size: 0.9rem;
+        }
+
+        .video-grid.side-by-side .video-copy p {
+          display: none;
+        }
+
+        .video-grid.push-comparison .video-copy {
+          padding: 9px;
+        }
+
+        .video-grid.push-comparison h3 {
+          margin: 0;
+          font-size: 0.78rem;
+        }
+
+        .video-grid.push-comparison .video-copy p {
+          display: none;
+        }
+
+        .demo-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .video-card video,
+        .video-card.landscape video,
+        .video-card.compact video {
+          aspect-ratio: 16 / 10;
+          object-fit: contain;
+        }
+
+        .video-grid.push-comparison video {
+          aspect-ratio: 9 / 16;
+        }
+
+        .video-grid.tall-portrait video {
+          aspect-ratio: 9 / 16;
+        }
+
+        .video-grid.continuous-pushing video {
+          aspect-ratio: 9 / 10;
+        }
+
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 0;
+        }
+
+        .links {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <div class="mark">Torque Adaptation Module</div>
+        <nav class="links" aria-label="Primary">
+          <a href="#abstract">Abstract</a>
+          <a href="#framework">Framework</a>
+          <a href="#demos">Videos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <h1>TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulation</h1>
+            <p class="lead">A reusable torque adaptor improves zero-shot real-robot execution under payload and dynamics mismatch without retraining the task policy or collecting robot-specific real-world data.</p>
+          </div>
+          <div class="hero-media">
+            <img src="assets/images/task_overview_paper.png" alt="Paper figure showing the four real-robot tasks evaluated with and without the torque adaptation module.">
+          </div>
+        </div>
+      </section>
+
+      <section id="abstract" class="band">
+        <div class="wrap">
+          <h2>Abstract</h2>
+          <div class="abstract">
+            <p>A policy tuned for one robot often behaves differently on another, whether due to the sim-to-real gap, unknown payloads, or differing dynamics across nominally identical robots. In contact-rich, dynamic manipulation, even small motion discrepancies can break the timing and modes of contact.</p>
+            <p>We introduce the Torque Adaptation Module (TAM), a learned module that adapts torque commands to match the behavior of an ideal robot. TAM operates between the low-level controller and the robot torque interface, using proprioceptive history to compute residual torque corrections.</p>
+            <p>Because TAM does not depend on policy observations, rewards, or action spaces, the same TAM weights can be reused across policies with joint targets, end-effector targets, or direct torques. We train TAM entirely in randomized simulation and evaluate it zero-shot on a real Franka Panda robot across dynamic manipulation tasks with unknown payloads.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="framework">
+        <div class="wrap">
+          <h2>Framework Overview</h2>
+          <div class="paper-figures">
+            <figure class="paper-figure">
+              <img src="assets/images/figure_1_tam_deployment.png" alt="Figure 1 diagram of the TAM deployment interface between policy, low-level controller, torque adaptor, history encoder, and target robot plant.">
+              <figcaption class="figure-copy">
+                <h3>Figure 1. TAM deployment interface</h3>
+                <p>TAM is inserted after the low-level controller and before the robot plant. Policies such as MPC ball balancing, BC cube flipping, and RL box pushing keep their original action spaces, while TAM uses robot-side proprioceptive history to infer the current mismatch and add residual torque corrections at the hardware control rate.</p>
+              </figcaption>
+            </figure>
+
+            <figure class="paper-figure">
+              <img src="assets/images/figure_2_tam_training.png" alt="Figure 2 diagram of TAM task-agnostic data generation, teacher torque computation, history encoder, torque adaptor, and training objective.">
+              <figcaption class="figure-copy">
+                <h3>Figure 2. TAM data generation and training</h3>
+                <p>TAM is trained from task-agnostic free-space joint-motion rollouts rather than downstream task demonstrations. Randomized robot parameters and synthetic waypoint references produce histories, analytic dynamics labels provide teacher torques, and the model learns the residual torque needed to make the perturbed robot match the ideal model response.</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="demos">
+        <div class="wrap">
+          <h2>Demo Videos</h2>
+
+          <div class="demo-section">
+            <div class="demo-head">
+              <h3>Push Comparison</h3>
+              <p>Box pushing with no adaptation, online system identification, and TAM.</p>
+            </div>
+            <div class="video-grid push-comparison">
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/push_none.mp4"></video>
+                <div class="video-copy">
+                  <h3>Direct transfer</h3>
+                  <p>Friction dominates on the real Franka, so small torques fail to overcome static friction and the motion gets stuck.</p>
+                </div>
+              </article>
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/push_sysid.mp4"></video>
+                <div class="video-copy">
+                  <h3>System identification</h3>
+                  <p>Online system identification partially compensates for dynamics mismatch.</p>
+                </div>
+              </article>
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/push_tam.mp4"></video>
+                <div class="video-copy">
+                  <h3>TAM</h3>
+                  <p>The adapted torque command improves transfer of the pushing policy.</p>
+                </div>
+              </article>
+            </div>
+            <div class="video-grid continuous-pushing tall-portrait">
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/push_ideal_sim.mp4"></video>
+                <div class="video-copy">
+                  <h3>Ideal simulation</h3>
+                  <p>Reference pushing behavior in the ideal simulator.</p>
+                </div>
+              </article>
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/push_continuous.mp4"></video>
+                <div class="video-copy">
+                  <h3>Continuous pushing</h3>
+                  <p>Continuous execution of the transferred pushing behavior.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="demo-section">
+            <div class="demo-head">
+              <h3>Flip Cube</h3>
+              <p>Right-side cube flip execution with direct policy transfer and TAM.</p>
+            </div>
+            <div class="video-grid side-by-side tall-portrait">
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/flip_right_direct.mp4"></video>
+                <div class="video-copy">
+                  <h3>Direct</h3>
+                  <p>The transferred flip executes directly on the robot.</p>
+                </div>
+              </article>
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/flip_right_tam.mp4"></video>
+                <div class="video-copy">
+                  <h3>TAM</h3>
+                  <p>TAM adjusts torques while leaving the policy interface unchanged.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="demo-section">
+            <div class="demo-head">
+              <h3>Ball on Plate</h3>
+              <p>MPC controller execution for centering the ball on the plate.</p>
+            </div>
+            <div class="video-grid side-by-side tall-portrait">
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/ball_direct.mp4"></video>
+                <div class="video-copy">
+                  <h3>Direct</h3>
+                  <p>The ball takes longer to converge to the center because motion mismatch affects the realized plate motion.</p>
+                </div>
+              </article>
+              <article class="video-card">
+                <video controls muted playsinline preload="metadata" src="assets/videos/ball_tam.mp4"></video>
+                <div class="video-copy">
+                  <h3>With TAM</h3>
+                  <p>Torque adaptation improves the realized plate motion.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="demo-section">
+            <div class="demo-head">
+              <h3>Unknown Payload</h3>
+              <p>Tracking under unknown 1 kg and 2 kg payloads, shown with and without TAM.</p>
+            </div>
+            <div class="payload-row">
+              <h4>1 kg payload</h4>
+              <div class="video-grid side-by-side">
+                <article class="video-card landscape">
+                  <video controls muted playsinline preload="metadata" src="assets/videos/payload_1kg_wo_tam.mp4"></video>
+                  <div class="video-copy">
+                    <h3>Without TAM</h3>
+                    <p>Payload mismatch shifts the realized motion away from the reference.</p>
+                  </div>
+                </article>
+                <article class="video-card landscape">
+                  <video controls muted playsinline preload="metadata" src="assets/videos/payload_1kg_tam.mp4"></video>
+                  <div class="video-copy">
+                    <h3>With TAM</h3>
+                    <p>TAM compensates for the unknown payload during tracking.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+            <div class="payload-row">
+              <h4>2 kg payload</h4>
+              <div class="video-grid side-by-side">
+                <article class="video-card landscape">
+                  <video controls muted playsinline preload="metadata" src="assets/videos/payload_2kg_wo_tam.mp4"></video>
+                  <div class="video-copy">
+                    <h3>Without TAM</h3>
+                    <p>The heavier payload increases the tracking error.</p>
+                  </div>
+                </article>
+                <article class="video-card landscape">
+                  <video controls muted playsinline preload="metadata" src="assets/videos/payload_2kg_tam.mp4"></video>
+                  <div class="video-copy">
+                    <h3>With TAM</h3>
+                    <p>The same adaptation module improves the heavier-payload case.</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </body>
+</html>
