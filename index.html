@@ -126,6 +126,21 @@
         max-width: 68ch;
       }
 
+      .authors {
+        margin: 20px 0 0;
+        max-width: 74ch;
+        color: var(--ink);
+        font-size: clamp(1rem, 1.7vw, 1.18rem);
+        font-weight: 650;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
       .button {
         min-height: 42px;
         display: inline-flex;
@@ -425,6 +440,10 @@
         <div class="wrap hero-grid">
           <div>
             <h1>TAM: Torque Adaptation Module for Robust Motion Transfer in Manipulation</h1>
+            <p class="authors">Dongwon Son, Florian Shkurti, Jason Lee, Naman Shah, Beomjoon Kim, Dieter Fox</p>
+            <div class="hero-actions">
+              <a class="button" href="assets/docs/paper.pdf">Download PDF</a>
+            </div>
             <p class="lead">A reusable torque adaptor improves zero-shot real-robot execution under payload and dynamics mismatch without retraining the task policy or collecting robot-specific real-world data.</p>
           </div>
           <div class="hero-media">
